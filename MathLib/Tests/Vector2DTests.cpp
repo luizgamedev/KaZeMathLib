@@ -43,3 +43,18 @@ TEST_CASE("Creating Vector2 float",  "[Vec2]")
         REQUIRE(anotherVector.y == -9.6f);
     }
 }
+
+TEST_CASE("Magnitude",  "[Vec2]")
+{
+
+}
+
+TEST_CASE("Normalize",  "[Vec2]")
+{
+
+}
+
+TEST_CASE("Normalize",  "[Vec2]")
+{
+
+}
