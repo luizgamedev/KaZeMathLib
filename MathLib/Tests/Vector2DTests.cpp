@@ -44,7 +44,7 @@ TEST_CASE("Creating Vector2 float",  "[Vec2]")
     }
 }
 
-TEST_CASE("Magnitude",  "[Vec2]")
+TEST_CASE("SQRMagnitude",  "[Vec2]")
 {
 
 }

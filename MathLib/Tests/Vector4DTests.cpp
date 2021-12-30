@@ -12,7 +12,7 @@ TEST_CASE("Creating Vector2 float",  "[Vec4]")
 
 }
 
-TEST_CASE("Magnitude",  "[Vec4]")
+TEST_CASE("SQRMagnitude",  "[Vec4]")
 {
 
 }

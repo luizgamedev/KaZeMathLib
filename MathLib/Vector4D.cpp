@@ -92,6 +92,45 @@ public:
 
         return *this;
     }
+
+    //Comparison Operators
+    bool operator==(const Vec4<T>& other)
+    {
+        return x == other.x && y == other.y && z == other.z && w == other.w;
+    }
+
+    bool operator!=(const Vec4<T>& other)
+    {
+        return x != other.x || y != other.y || z != other.z || w != other.w;
+    }
+
+    //Properties of Vectors
+
+    T Magnitude()
+    {
+        return (T) (x*x) + (y*y) + (z*z);
+    }
+
+    T SQRMagnitude()
+    {
+        return (T) sqrt(Magnitude());
+    }
+
+    Vec4<T>& Normalize()
+    {
+        (*this) = (*this) / SQRMagnitude();
+        return (*this);
+    }
+
+    T Dot(const Vec4<T>& other)
+    {
+        return (T) ((x * (other.x)) + (y * (other.y)) + (z * (other.z)) + (w * (other.w)));
+    }
+
+    T Angle(const Vec4<T>& other)
+    {
+        return cos( (Dot(other)) / (SQRMagnitude() * other.SQRMagnitude()) );
+    }
 };
 
 }
