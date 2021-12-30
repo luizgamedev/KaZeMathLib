@@ -87,12 +87,12 @@ public:
     }
 
     //Comparison Operators
-    bool operator==(const Vec3<T>& other)
+    bool operator==(const Vec3<T>& other) const
     {
         return x == other.x && y == other.y && z == other.z;
     }
 
-    bool operator!=(const Vec3<T>& other)
+    bool operator!=(const Vec3<T>& other) const
     {
         return x != other.x || y != other.y || z != other.z;
     }
@@ -111,7 +111,13 @@ public:
 
     Vec3<T>& Normalize()
     {
-        (*this) = (*this) / SQRMagnitude();
+        T denominator = SQRMagnitude();
+
+        //Avoiding Division by 0
+        if(denominator != 0)
+        {
+            (*this) = (*this) / denominator;
+        }
         return (*this);
     }
 
@@ -123,6 +129,13 @@ public:
     T Angle(const Vec3<T>& other)
     {
         return cos( (Dot(other)) / (SQRMagnitude() * other.SQRMagnitude()) );
+    }
+
+    Vec3<T>& Cross(const Vec3<T>& rhs)
+    {
+        return Vec3<T>( (y*rhs.z) - (z*rhs.y),
+                        (z*rhs.x) - (x*rhs.z),
+                        (x*rhs.y) - (y*rhs.x) );
     }
 };
 

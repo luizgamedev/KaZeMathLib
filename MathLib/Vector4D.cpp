@@ -94,12 +94,12 @@ public:
     }
 
     //Comparison Operators
-    bool operator==(const Vec4<T>& other)
+    bool operator==(const Vec4<T>& other) const
     {
         return x == other.x && y == other.y && z == other.z && w == other.w;
     }
 
-    bool operator!=(const Vec4<T>& other)
+    bool operator!=(const Vec4<T>& other) const
     {
         return x != other.x || y != other.y || z != other.z || w != other.w;
     }
@@ -118,7 +118,13 @@ public:
 
     Vec4<T>& Normalize()
     {
-        (*this) = (*this) / SQRMagnitude();
+        T denominator = SQRMagnitude();
+
+        //Avoiding Division by 0
+        if(denominator != 0)
+        {
+            (*this) = (*this) / denominator;
+        }
         return (*this);
     }
 

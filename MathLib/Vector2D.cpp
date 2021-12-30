@@ -82,12 +82,12 @@ public:
     }
 
     //Comparison Operators
-    bool operator==(const Vec2<T>& other)
+    inline bool operator==(const Vec2<T>& other) const
     {
         return x == other.x && y == other.y;
     }
 
-    bool operator!=(const Vec2<T>& other)
+    inline bool operator!=(const Vec2<T>& other) const
     {
         return x != other.x || y != other.y;
     }
@@ -106,7 +106,13 @@ public:
 
     Vec2<T>& Normalize()
     {
-        (*this) = (*this) / SQRMagnitude();
+        T denominator = SQRMagnitude();
+
+        //Avoiding Division by 0
+        if(denominator != 0)
+        {
+            (*this) = (*this) / denominator;
+        }
         return (*this);
     }
 
