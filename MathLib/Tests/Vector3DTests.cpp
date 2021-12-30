@@ -7,22 +7,22 @@
 
 using namespace KMath;
 
-TEST_CASE("Creating Vector2 float",  "[Vec3]")
+TEST_CASE("Creating Vector 3 float",  "[Vec3]")
 {
 
 }
 
-TEST_CASE("SQRMagnitude",  "[Vec3]")
+TEST_CASE("Vec 3 SQRMagnitude",  "[Vec3]")
 {
 
 }
 
-TEST_CASE("Normalize",  "[Vec3]")
+TEST_CASE("Vec 3 Normalize",  "[Vec3]")
 {
 
 }
 
-TEST_CASE("Normalize",  "[Vec3]")
+TEST_CASE("Vec 3 Dot",  "[Vec3]")
 {
 
 }

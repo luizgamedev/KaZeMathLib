@@ -6,6 +6,7 @@
 #include "../Vector2D.cpp"
 
 using namespace KMath;
+#define SIMPLE_PI 3.1415938
 
 TEST_CASE("Creating Vector2 float",  "[Vec2]")
 {
@@ -44,17 +45,95 @@ TEST_CASE("Creating Vector2 float",  "[Vec2]")
     }
 }
 
-TEST_CASE("SQRMagnitude",  "[Vec2]")
+TEST_CASE("Vec 2 Magnitude",  "[Vec2]")
 {
+    float x = (rand() % 100) * SIMPLE_PI;
+    float y = (rand() % 100) * SIMPLE_PI;
+
+    SECTION("Random operation")
+    {
+
+        Vec2<float> myVec(x, y);
+
+        REQUIRE(myVec.Magnitude() == ((x * x) + (y * y)));
+    }
+
+    SECTION("Zero option")
+    {
+        Vec2<float> zeroVec;
+
+        REQUIRE(zeroVec.Magnitude() == 0);
+    }
 
 }
 
-TEST_CASE("Normalize",  "[Vec2]")
-{
 
+TEST_CASE("Vec 2 SQRMagnitude",  "[Vec2]")
+{
+    float x = (rand() % 100) * SIMPLE_PI;
+    float y = (rand() % 100) * SIMPLE_PI;
+
+    SECTION("Random operation")
+    {
+
+        Vec2<float> myVec(x, y);
+
+        REQUIRE(myVec.SQRMagnitude() == sqrt((x * x) + (y * y)));
+    }
+
+    SECTION("Zero option")
+    {
+        Vec2<float> zeroVec;
+
+        REQUIRE(zeroVec.SQRMagnitude() == 0);
+    }
 }
 
-TEST_CASE("Normalize",  "[Vec2]")
+TEST_CASE("Vec 2 Normalize",  "[Vec2]")
 {
+    float x = (rand() % 100) * SIMPLE_PI;
+    float y = (rand() % 100) * SIMPLE_PI;
 
+    SECTION("Random operation")
+    {
+
+        Vec2<float> myVec(x, y);
+
+        REQUIRE(myVec.Normalize() == (myVec / sqrt((x*x) + (y*y))));
+    }
+
+    SECTION("Zero option")
+    {
+        Vec2<float> zeroVec;
+        zeroVec.Normalize();
+
+        REQUIRE(zeroVec.x == 0.0f);
+        REQUIRE(zeroVec.y == 0.0f);
+    }
+}
+
+TEST_CASE("Vec 2 Dot",  "[Vec2]")
+{
+    float ax = (rand() % 100) * SIMPLE_PI;
+    float ay = (rand() % 100) * SIMPLE_PI;
+
+    float bx = (rand() % 100) * SIMPLE_PI;
+    float by = (rand() % 100) * SIMPLE_PI;
+
+    SECTION("Random operation")
+    {
+
+        Vec2<float> vec_1(ax, ay);
+        Vec2<float> vec_2(bx, by);
+
+        REQUIRE(vec_1.Dot(vec_2) == ( ax*bx + ay*by));
+    }
+
+    SECTION("Zero option")
+    {
+        Vec2<float> vec_zero_1(0.0f, 0.0f);
+        Vec2<float> vec_zero_2;
+
+        REQUIRE(vec_zero_1.Dot(vec_zero_2) == 0.0f);
+    }
 }
