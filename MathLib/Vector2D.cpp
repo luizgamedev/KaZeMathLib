@@ -6,13 +6,15 @@
 #define KAZEMATHLIB_VECTOR2D_CPP
 
 #include <iostream>
+#include <math.h>
+
 using namespace std;
 
 namespace KMath
 {
 
 
-template <typename T, typename std::enable_if<std::is_arithmetic<T>::value>::type* = nullptr>
+template <typename T, typename std::enable_if<std::is_floating_point<T>::value>::type* = nullptr>
 class Vec2
 {
 public:
@@ -78,6 +80,8 @@ public:
 
         return *this;
     }
+
+
 };
 
 }
