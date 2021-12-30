@@ -13,7 +13,7 @@ using namespace std;
 namespace KMath
 {
 
-template <typename T, typename std::enable_if<std::is_arithmetic<T>::value>::type* = nullptr>
+template <typename T, typename std::enable_if<std::is_floating_point<T>::value>::type* = nullptr>
 class Vec3
 {
 public:
@@ -86,7 +86,44 @@ public:
         return *this;
     }
 
+    //Comparison Operators
+    bool operator==(const Vec3<T>& other)
+    {
+        return x == other.x && y == other.y && z == other.z;
+    }
 
+    bool operator!=(const Vec3<T>& other)
+    {
+        return x != other.x || y != other.y || z != other.z;
+    }
+
+    //Properties of Vectors
+
+    T Magnitude()
+    {
+        return (T) (x*x) + (y*y) + (z*z);
+    }
+
+    T SQRMagnitude()
+    {
+        return (T) sqrt(Magnitude());
+    }
+
+    Vec3<T>& Normalize()
+    {
+        (*this) = (*this) / SQRMagnitude();
+        return (*this);
+    }
+
+    T Dot(const Vec3<T>& other)
+    {
+        return (T) ((x * (other.x)) + (y * (other.y)) + (z * (other.z)));
+    }
+
+    T Angle(const Vec3<T>& other)
+    {
+        return cos( (Dot(other)) / (SQRMagnitude() * other.SQRMagnitude()) );
+    }
 };
 
 }

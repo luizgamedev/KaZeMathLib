@@ -7,43 +7,6 @@
 
 using namespace KMath;
 
-TEST_CASE("Creating Vector2 int",  "[Vec2]")
-{
-    Vec2<int> myIntVec;
-    myIntVec.x = 10;
-    myIntVec.y = 15;
-
-    REQUIRE(myIntVec.x == 10);
-    REQUIRE(myIntVec.y == 15);
-
-    SECTION("Doing some operations")
-    {
-        Vec2<int> anotherVector;
-        anotherVector = myIntVec;
-
-        REQUIRE(myIntVec.x == 10);
-        REQUIRE(myIntVec.y == 15);
-
-        REQUIRE(anotherVector.x == 10);
-        REQUIRE(anotherVector.y == 15);
-
-        anotherVector = anotherVector + Vec2<int>(2,3);
-
-        REQUIRE(anotherVector.x == 12);
-        REQUIRE(anotherVector.y == 18);
-
-        anotherVector = anotherVector - Vec2<int>(5,9);
-
-        REQUIRE(anotherVector.x == 7);
-        REQUIRE(anotherVector.y == 9);
-
-        anotherVector = anotherVector * 2;
-
-        REQUIRE(anotherVector.x == 14);
-        REQUIRE(anotherVector.y == 18);
-    }
-}
-
 TEST_CASE("Creating Vector2 float",  "[Vec2]")
 {
     Vec2<float> myFloatVec;
@@ -79,4 +42,19 @@ TEST_CASE("Creating Vector2 float",  "[Vec2]")
         REQUIRE(anotherVector.x == -5.8f);
         REQUIRE(anotherVector.y == -9.6f);
     }
+}
+
+TEST_CASE("SQRMagnitude",  "[Vec2]")
+{
+
+}
+
+TEST_CASE("Normalize",  "[Vec2]")
+{
+
+}
+
+TEST_CASE("Normalize",  "[Vec2]")
+{
+
 }

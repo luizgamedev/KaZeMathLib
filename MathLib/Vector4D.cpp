@@ -14,7 +14,7 @@ using namespace std;
 namespace KMath
 {
 
-template <typename T, typename std::enable_if<std::is_arithmetic<T>::value>::type* = nullptr>
+template <typename T, typename std::enable_if<std::is_floating_point<T>::value>::type* = nullptr>
 class Vec4
 {
 public:
@@ -91,6 +91,45 @@ public:
         this->w /= scalar;
 
         return *this;
+    }
+
+    //Comparison Operators
+    bool operator==(const Vec4<T>& other)
+    {
+        return x == other.x && y == other.y && z == other.z && w == other.w;
+    }
+
+    bool operator!=(const Vec4<T>& other)
+    {
+        return x != other.x || y != other.y || z != other.z || w != other.w;
+    }
+
+    //Properties of Vectors
+
+    T Magnitude()
+    {
+        return (T) (x*x) + (y*y) + (z*z);
+    }
+
+    T SQRMagnitude()
+    {
+        return (T) sqrt(Magnitude());
+    }
+
+    Vec4<T>& Normalize()
+    {
+        (*this) = (*this) / SQRMagnitude();
+        return (*this);
+    }
+
+    T Dot(const Vec4<T>& other)
+    {
+        return (T) ((x * (other.x)) + (y * (other.y)) + (z * (other.z)) + (w * (other.w)));
+    }
+
+    T Angle(const Vec4<T>& other)
+    {
+        return cos( (Dot(other)) / (SQRMagnitude() * other.SQRMagnitude()) );
     }
 };
 
