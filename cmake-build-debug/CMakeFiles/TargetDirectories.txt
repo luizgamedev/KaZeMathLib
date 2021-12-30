@@ -1,4 +1,0 @@
-/Users/luiz/Workspace/C++/KaZeMathLib/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/luiz/Workspace/C++/KaZeMathLib/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/luiz/Workspace/C++/KaZeMathLib/cmake-build-debug/CMakeFiles/my_lib_tests.dir
-/Users/luiz/Workspace/C++/KaZeMathLib/cmake-build-debug/CMakeFiles/KaZeMathLib.dir

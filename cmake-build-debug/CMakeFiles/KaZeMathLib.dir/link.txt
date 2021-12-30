@@ -1,2 +1,0 @@
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar qc libKaZeMathLib.a CMakeFiles/KaZeMathLib.dir/library.cpp.o CMakeFiles/KaZeMathLib.dir/MathLib/Vector.cpp.o
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib libKaZeMathLib.a
