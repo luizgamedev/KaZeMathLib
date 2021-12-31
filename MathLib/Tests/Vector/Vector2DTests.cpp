@@ -2,8 +2,8 @@
 // Created by Luiz on 29/12/2021.
 //
 
-#include "../../catch.hpp"
-#include "../Vector2D.cpp"
+#include "../../../catch.hpp"
+#include "../../Vector/Vector2D.cpp"
 
 using namespace KMath;
 
