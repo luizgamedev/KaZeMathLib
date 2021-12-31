@@ -131,7 +131,7 @@ public:
         return cos( (Dot(other)) / (SQRMagnitude() * other.SQRMagnitude()) );
     }
 
-    Vec3<T>& Cross(const Vec3<T>& rhs)
+    Vec3<T> Cross(const Vec3<T>& rhs)
     {
         return Vec3<T>( (y*rhs.z) - (z*rhs.y),
                         (z*rhs.x) - (x*rhs.z),

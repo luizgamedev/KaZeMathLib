@@ -108,7 +108,7 @@ public:
 
     T Magnitude()
     {
-        return (T) (x*x) + (y*y) + (z*z);
+        return (T) (x*x) + (y*y) + (z*z) + (w*w);
     }
 
     T SQRMagnitude()

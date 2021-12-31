@@ -6,7 +6,6 @@
 #include "../Vector2D.cpp"
 
 using namespace KMath;
-#define SIMPLE_PI 3.1415938
 
 TEST_CASE("Creating Vector2 float",  "[Vec2]")
 {
@@ -47,8 +46,9 @@ TEST_CASE("Creating Vector2 float",  "[Vec2]")
 
 TEST_CASE("Vec 2 Magnitude",  "[Vec2]")
 {
-    float x = (rand() % 100) * SIMPLE_PI;
-    float y = (rand() % 100) * SIMPLE_PI;
+    float SimplePi = 3.1415976f;
+    float x = (rand() % 100) * SimplePi;
+    float y = (rand() % 100) * SimplePi;
 
     SECTION("Random operation")
     {
@@ -70,8 +70,9 @@ TEST_CASE("Vec 2 Magnitude",  "[Vec2]")
 
 TEST_CASE("Vec 2 SQRMagnitude",  "[Vec2]")
 {
-    float x = (rand() % 100) * SIMPLE_PI;
-    float y = (rand() % 100) * SIMPLE_PI;
+    float SimplePi = 3.1415976f;
+    float x = (rand() % 100) * SimplePi;
+    float y = (rand() % 100) * SimplePi;
 
     SECTION("Random operation")
     {
@@ -91,8 +92,9 @@ TEST_CASE("Vec 2 SQRMagnitude",  "[Vec2]")
 
 TEST_CASE("Vec 2 Normalize",  "[Vec2]")
 {
-    float x = (rand() % 100) * SIMPLE_PI;
-    float y = (rand() % 100) * SIMPLE_PI;
+    float SimplePi = 3.1415976f;
+    float x = (rand() % 100) * SimplePi;
+    float y = (rand() % 100) * SimplePi;
 
     SECTION("Random operation")
     {
@@ -114,11 +116,12 @@ TEST_CASE("Vec 2 Normalize",  "[Vec2]")
 
 TEST_CASE("Vec 2 Dot",  "[Vec2]")
 {
-    float ax = (rand() % 100) * SIMPLE_PI;
-    float ay = (rand() % 100) * SIMPLE_PI;
+    float SimplePi = 3.1415976f;
+    float ax = (rand() % 100) * SimplePi;
+    float ay = (rand() % 100) * SimplePi;
 
-    float bx = (rand() % 100) * SIMPLE_PI;
-    float by = (rand() % 100) * SIMPLE_PI;
+    float bx = (rand() % 100) * SimplePi;
+    float by = (rand() % 100) * SimplePi;
 
     SECTION("Random operation")
     {
