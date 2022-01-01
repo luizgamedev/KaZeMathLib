@@ -50,40 +50,28 @@ public:
         return *this;
     }
 
-    Vec3<T>& operator+(const Vec3<T>& other)
+    friend Vec3<T> operator+(const Vec3<T>& lhs, const Vec3<T>& rhs)
     {
-        this->x += other.x;
-        this->y += other.y;
-        this->z += other.z;
-
-        return *this;
+        Vec3<T> result(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
+        return result;
     }
 
-    Vec3<T>& operator-(const Vec3<T>& other)
+    friend Vec3<T> operator-(const Vec3<T>& lhs, const Vec3<T>& rhs)
     {
-        this->x -= other.x;
-        this->y -= other.y;
-        this->z -= other.z;
-
-        return *this;
+        Vec3<T> result(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
+        return result;
     }
 
-    Vec3<T>& operator*(T scalar)
+    friend Vec3<T> operator*(const Vec3<T>& lhs, T scalar)
     {
-        this->x *= scalar;
-        this->y *= scalar;
-        this->z *= scalar;
-
-        return *this;
+        Vec3<T> result(lhs.x * scalar, lhs.y * scalar, lhs.z * scalar);
+        return result;
     }
 
-    Vec3<T>& operator/(T scalar)
+    friend Vec3<T> operator/(const Vec3<T>& lhs, T scalar)
     {
-        this->x /= scalar;
-        this->y /= scalar;
-        this->z /= scalar;
-
-        return *this;
+        Vec3<T> result(lhs.x / scalar, lhs.y / scalar, lhs.z / scalar);
+        return result;
     }
 
     //Comparison Operators
@@ -109,16 +97,18 @@ public:
         return (T) sqrt(Magnitude());
     }
 
-    Vec3<T>& Normalize()
+    Vec3<T> Normalize()
     {
+        Vec3<T> result;
+
         T denominator = SQRMagnitude();
 
         //Avoiding Division by 0
         if(denominator != 0)
         {
-            (*this) = (*this) / denominator;
+            result = (*this) / denominator;
         }
-        return (*this);
+        return result;
     }
 
     T Dot(const Vec3<T>& other)

@@ -26,7 +26,7 @@ public:
     //Constructors
     Vec4() : x(0), y(0), z(0), w(0) {}
     Vec4(T _x, T _y, T _z, T _w) : x(_x), y(_y), z(_z), w(_w) {}
-    Vec4(const Vec4& _vec) : x(_vec.x), y(_vec.y), z(_vec.z), w(_vec._w) {}
+    Vec4(const Vec4& _vec) : x(_vec.x), y(_vec.y), z(_vec.z), w(_vec.w) {}
     Vec4(const KMath::Vec3<T>& _vec, T _w = 0) : x(_vec.x), y(_vec.y), z(_vec.z), w(_w) {}
 
     //Print Overload
@@ -53,44 +53,28 @@ public:
         return *this;
     }
 
-    Vec4<T>& operator+(const Vec4<T>& other)
+    friend Vec4<T> operator+(const Vec4<T>& lhs, const Vec4<T>& rhs)
     {
-        this->x += other.x;
-        this->y += other.y;
-        this->z += other.z;
-        this->w += other.w;
-
-        return *this;
+        Vec4<T> result(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
+        return result;
     }
 
-    Vec4<T>& operator-(const Vec4<T>& other)
+    friend Vec4<T> operator-(const Vec4<T>& lhs, const Vec4<T>& rhs)
     {
-        this->x -= other.x;
-        this->y -= other.y;
-        this->z -= other.z;
-        this->w -= other.w;
-
-        return *this;
+        Vec4<T> result(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w);
+        return result;
     }
 
-    Vec4<T>& operator*(T scalar)
+    friend Vec4<T> operator*(const Vec4<T>& lhs, T scalar)
     {
-        this->x *= scalar;
-        this->y *= scalar;
-        this->z *= scalar;
-        this->w *= scalar;
-
-        return *this;
+        Vec4<T> result(lhs.x * scalar, lhs.y * scalar, lhs.z * scalar, lhs.w * scalar);
+        return result;
     }
 
-    Vec4<T>& operator/(T scalar)
+    friend Vec4<T> operator/(const Vec4<T>& lhs, T scalar)
     {
-        this->x /= scalar;
-        this->y /= scalar;
-        this->z /= scalar;
-        this->w /= scalar;
-
-        return *this;
+        Vec4<T> result(lhs.x / scalar, lhs.y / scalar, lhs.z / scalar, lhs.w / scalar);
+        return result;
     }
 
     //Comparison Operators
@@ -116,16 +100,18 @@ public:
         return (T) sqrt(Magnitude());
     }
 
-    Vec4<T>& Normalize()
+    Vec4<T> Normalize()
     {
+        Vec4<T> result;
+
         T denominator = SQRMagnitude();
 
         //Avoiding Division by 0
         if(denominator != 0)
         {
-            (*this) = (*this) / denominator;
+            result = (*this) / denominator;
         }
-        return (*this);
+        return result;
     }
 
     T Dot(const Vec4<T>& other)

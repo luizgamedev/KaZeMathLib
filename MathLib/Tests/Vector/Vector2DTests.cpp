@@ -2,8 +2,8 @@
 // Created by Luiz on 29/12/2021.
 //
 
-#include "../../catch.hpp"
-#include "../Vector2D.cpp"
+#include "../../../catch.hpp"
+#include "../../Vector/Vector2D.cpp"
 
 using namespace KMath;
 
@@ -41,6 +41,51 @@ TEST_CASE("Creating Vector2 float",  "[Vec2]")
 
         REQUIRE(anotherVector.x == -5.8f);
         REQUIRE(anotherVector.y == -9.6f);
+    }
+
+    SECTION("Vector Consistency")
+    {
+        Vec2<float> vec_result;
+        Vec2<float> vec_a(10.0f, 10.0f);
+        Vec2<float> vec_b(5.0f,5.0f);
+
+        vec_result = vec_a + vec_b;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+
+        REQUIRE(vec_result.x == 15.0f);
+        REQUIRE(vec_result.y == 15.0f);
+
+        vec_result = vec_a - vec_b;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+
+        REQUIRE(vec_result.x == 5.0f);
+        REQUIRE(vec_result.y == 5.0f);
+
+        vec_result = vec_b * 2;
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+
+        REQUIRE(vec_result.x == 10.0f);
+        REQUIRE(vec_result.y == 10.0f);
+
+        vec_result = vec_a / 2;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+
+        REQUIRE(vec_result.x == 5.0f);
+        REQUIRE(vec_result.y == 5.0f);
     }
 }
 
