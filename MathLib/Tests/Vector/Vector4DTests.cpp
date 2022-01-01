@@ -68,6 +68,71 @@ TEST_CASE("Creating Vector 4 float",  "[Vec4]")
         REQUIRE(anotherVector.z == 8.6f);
         REQUIRE(anotherVector.w == 19.4f);
     }
+
+    SECTION("Vector Consistency")
+    {
+        Vec4<float> vec_result;
+        Vec4<float> vec_a(10.0f, 10.0f, 10.0f, 10.0f);
+        Vec4<float> vec_b(5.0f,5.0f, 5.0f, 5.0f);
+
+        vec_result = vec_a + vec_b;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+        REQUIRE(vec_a.z == 10.0f);
+        REQUIRE(vec_a.w == 10.0f);
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+        REQUIRE(vec_b.z == 5.0f);
+        REQUIRE(vec_b.w == 5.0f);
+
+        REQUIRE(vec_result.x == 15.0f);
+        REQUIRE(vec_result.y == 15.0f);
+        REQUIRE(vec_result.z == 15.0f);
+        REQUIRE(vec_result.w == 15.0f);
+
+        vec_result = vec_a - vec_b;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+        REQUIRE(vec_a.z == 10.0f);
+        REQUIRE(vec_a.w == 10.0f);
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+        REQUIRE(vec_b.z == 5.0f);
+        REQUIRE(vec_b.w == 5.0f);
+
+        REQUIRE(vec_result.x == 5.0f);
+        REQUIRE(vec_result.y == 5.0f);
+        REQUIRE(vec_result.z == 5.0f);
+        REQUIRE(vec_result.w == 5.0f);
+
+        vec_result = vec_b * 2;
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+        REQUIRE(vec_b.z == 5.0f);
+        REQUIRE(vec_b.w == 5.0f);
+
+        REQUIRE(vec_result.x == 10.0f);
+        REQUIRE(vec_result.y == 10.0f);
+        REQUIRE(vec_result.z == 10.0f);
+        REQUIRE(vec_result.w == 10.0f);
+
+        vec_result = vec_a / 2;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+        REQUIRE(vec_a.z == 10.0f);
+        REQUIRE(vec_a.w == 10.0f);
+
+        REQUIRE(vec_result.x == 5.0f);
+        REQUIRE(vec_result.y == 5.0f);
+        REQUIRE(vec_result.z == 5.0f);
+        REQUIRE(vec_result.w == 5.0f);
+    }
 }
 
 TEST_CASE("Vec 4 Magnitude",  "[Vec4]")
