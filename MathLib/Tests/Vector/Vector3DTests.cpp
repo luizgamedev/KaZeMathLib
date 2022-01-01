@@ -60,6 +60,61 @@ TEST_CASE("Creating Vector 3 float",  "[Vec3]")
         REQUIRE(anotherVector.y == -9.6f);
         REQUIRE(anotherVector.z == 8.6f);
     }
+
+    SECTION("Vector Consistency")
+    {
+        Vec3<float> vec_result;
+        Vec3<float> vec_a(10.0f, 10.0f, 10.0f);
+        Vec3<float> vec_b(5.0f,5.0f, 5.0f);
+
+        vec_result = vec_a + vec_b;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+        REQUIRE(vec_a.z == 10.0f);
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+        REQUIRE(vec_b.z == 5.0f);
+
+        REQUIRE(vec_result.x == 15.0f);
+        REQUIRE(vec_result.y == 15.0f);
+        REQUIRE(vec_result.z == 15.0f);
+
+        vec_result = vec_a - vec_b;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+        REQUIRE(vec_a.z == 10.0f);
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+        REQUIRE(vec_b.z == 5.0f);
+
+        REQUIRE(vec_result.x == 5.0f);
+        REQUIRE(vec_result.y == 5.0f);
+        REQUIRE(vec_result.z == 5.0f);
+
+        vec_result = vec_b * 2;
+
+        REQUIRE(vec_b.x == 5.0f);
+        REQUIRE(vec_b.y == 5.0f);
+        REQUIRE(vec_b.z == 5.0f);
+
+        REQUIRE(vec_result.x == 10.0f);
+        REQUIRE(vec_result.y == 10.0f);
+        REQUIRE(vec_result.z == 10.0f);
+
+        vec_result = vec_a / 2;
+
+        REQUIRE(vec_a.x == 10.0f);
+        REQUIRE(vec_a.y == 10.0f);
+        REQUIRE(vec_a.z == 10.0f);
+
+        REQUIRE(vec_result.x == 5.0f);
+        REQUIRE(vec_result.y == 5.0f);
+        REQUIRE(vec_result.z == 5.0f);
+    }
 }
 
 TEST_CASE("Vec 3 Magnitude",  "[Vec3]")

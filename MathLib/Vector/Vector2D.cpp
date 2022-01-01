@@ -49,36 +49,28 @@ public:
         return *this;
     }
 
-    Vec2<T>& operator+(const Vec2<T>& other)
+    friend Vec2<T> operator+(const Vec2<T>& lhs, const Vec2<T>& rhs)
     {
-        this->x += other.x;
-        this->y += other.y;
-
-        return *this;
+        Vec2<T> result(lhs.x + rhs.x, lhs.y + rhs.y);
+        return result;
     }
 
-    Vec2<T>& operator-(const Vec2<T>& other)
+    friend Vec2<T> operator-(const Vec2<T>& lhs, const Vec2<T>& rhs)
     {
-        this->x -= other.x;
-        this->y -= other.y;
-
-        return *this;
+        Vec2<T> result(lhs.x - rhs.x, lhs.y - rhs.y);
+        return result;
     }
 
-    Vec2<T>& operator*(T scalar)
+    friend Vec2<T> operator*(const Vec2<T>& lhs, T scalar)
     {
-        this->x *= scalar;
-        this->y *= scalar;
-
-        return *this;
+        Vec2<T> result(lhs.x * scalar, lhs.y * scalar);
+        return result;
     }
 
-    Vec2<T>& operator/(T scalar)
+    friend Vec2<T> operator/(const Vec2<T>& lhs, T scalar)
     {
-        this->x /= scalar;
-        this->y /= scalar;
-
-        return *this;
+        Vec2<T> result(lhs.x / scalar, lhs.y / scalar);
+        return result;
     }
 
     //Comparison Operators
@@ -104,16 +96,18 @@ public:
         return (T) sqrt(Magnitude());
     }
 
-    Vec2<T>& Normalize()
+    Vec2<T> Normalize()
     {
+        Vec2<T> result;
+
         T denominator = SQRMagnitude();
 
         //Avoiding Division by 0
         if(denominator != 0)
         {
-            (*this) = (*this) / denominator;
+            result = (*this) / denominator;
         }
-        return (*this);
+        return result;
     }
 
     T Dot(const Vec2<T>& other)
