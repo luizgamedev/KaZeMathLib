@@ -20,54 +20,91 @@ class Matrix2x2
 //Members
 public:
     //Constructor
-    Matrix2x2()
-    {
-        AllocateMatrix();
-    }
+    Matrix2x2() { AllocateMatrix(); }
 
     //Destructor
-    ~Matrix2x2()
-    {
-        DeleteMatrix();
-    }
+    ~Matrix2x2() { DeleteMatrix(); }
 
     //Size Property
     const ushort Size = 2;
 
-//    Matrix2x2<T>& operator=(const Matrix2x2<T>& other)
-//    {
-//
-//    }
-//
-//    Matrix2x2<T>& operator+(const Matrix2x2<T>& other)
-//    {
-//
-//    }
-//
-//    Matrix2x2<T>& operator-(const Matrix2x2<T>& other)
-//    {
-//
-//    }
-//
-//    Matrix2x2<T>& operator*(T scalar)
-//    {
-//
-//    }
-//
-//    Matrix2x2<T>& operator/(T scalar)
-//    {
-//
-//    }
+    //Access
+    T GetValueAt(int _x, int _y) const
+    {
+        return m_matrix[_x][_y];
+    }
+
+    void SetValueAt(T _value, int _x, int _y)
+    {
+        m_matrix[_x][_y] = _value;
+    }
+
+    Matrix2x2<T>& operator=(const Matrix2x2<T>& other)
+    {
+        //Self Copy Guard
+        if(this == &other)
+        {
+            return *this;
+        }
+
+        for(int i = 0 ; i < this->Size ; ++i)
+        {
+            for(int j = 0 ; j < this->Size ; ++j)
+            {
+                SetValueAt(other.GetValueAt(i,j),  i,j);
+            }
+        }
+
+        return *this;
+    }
+
+    friend Matrix2x2<T> operator+(const Matrix2x2<T>& lhs,  const Matrix2x2<T>& rhs)
+    {
+        Matrix2x2<T> result;
+
+        for(int i = 0 ; i < result.Size ; ++i)
+        {
+            for(int j = 0 ; j < result.Size ; ++j)
+            {
+                result.SetValueAt(lhs.GetValueAt(i,j) + rhs.GetValueAt(i,j),  i,j);
+            }
+        }
+
+        return result;
+    }
+
+    friend Matrix2x2<T> operator-(const Matrix2x2<T>& lhs, const Matrix2x2<T>& rhs)
+    {
+        Matrix2x2<T> result;
+
+        for(int i = 0 ; i < result.Size ; ++i)
+        {
+            for(int j = 0 ; j < result.Size ; ++j)
+            {
+                result.SetValueAt(lhs.GetValueAt(i,j) - rhs.GetValueAt(i,j),  i,j);
+            }
+        }
+
+        return result;
+    }
+
+    friend Matrix2x2<T> operator*(const Matrix2x2<T>& lhs, const Matrix2x2<T>& rhs)
+    {
+        Matrix2x2<T> result;
+
+        return result;
+    }
+
 
     //Comparison Operators
     inline bool operator==(const Matrix2x2<T>& other) const
     {
-
+        return false;
     }
 
     inline bool operator!=(const Matrix2x2<T>& other) const
     {
-
+        return false;
     }
 
 
@@ -76,7 +113,11 @@ private:
 
     inline void AllocateMatrix()
     {
-        m_matrix = new T[Size][Size](); //Allocate and set to zero
+        m_matrix = new T* [Size](); //Allocate and set to zero
+        for(int i = 0 ; i < Size ; ++i)
+        {
+            m_matrix[i] = new T[Size]();
+        }
     }
 
     inline void DeleteMatrix()

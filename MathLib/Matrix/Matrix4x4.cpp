@@ -38,7 +38,11 @@ private:
 
     inline void AllocateMatrix()
     {
-        m_matrix = new T[Size][Size](); //Allocate and set to zero
+        m_matrix = new T* [Size](); //Allocate and set to zero
+        for(int i = 0 ; i < Size ; ++i)
+        {
+            m_matrix[i] = new T[Size]();
+        }
     }
 
     inline void DeleteMatrix()
