@@ -5,6 +5,8 @@
 #include "../../../catch.hpp"
 #include "../../Matrix/Matrix4x4.cpp"
 
+using namespace KMath;
+
 TEST_CASE("4x4 Matrix Creation and Access", "[Matrix4x4]")
 {
 
