@@ -28,6 +28,34 @@ public:
     //Size Property
     const ushort Size = 2;
 
+    //Static Methods
+    static Matrix2x2<T> Identity()
+    {
+        Matrix2x2<T> identity;
+        identity.SetValueAt(1, 0,0);
+        identity.SetValueAt(1, 1,1);
+        return identity;
+    }
+
+    //Methods
+    T Determinant()
+    {
+        return (m_matrix[0][0]*m_matrix[1][1]) - (m_matrix[0][1]*m_matrix[1][0]);
+    }
+
+    Matrix2x2<T> Inverse()
+    {
+        Matrix2x2<T> inverse;
+        T inverse_determinant = 1/Determinant();
+
+        inverse.SetValueAt(m_matrix[0][0] * inverse_determinant, 0,0);
+        inverse.SetValueAt(m_matrix[0][1] * inverse_determinant, 0,1);
+        inverse.SetValueAt(m_matrix[1][0] * inverse_determinant, 1,0);
+        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 1,1);
+
+        return inverse;
+    }
+
     //Access
     T GetValueAt(int _x, int _y) const
     {
@@ -91,6 +119,19 @@ public:
     friend Matrix2x2<T> operator*(const Matrix2x2<T>& lhs, const Matrix2x2<T>& rhs)
     {
         Matrix2x2<T> result;
+
+        for(int i = 0 ; i < result.Size ; ++i)
+        {
+            for(int j = 0 ; j < result.Size ; ++j)
+            {
+                T sum = 0;
+                for(int k = 0 ; k < result.Size ; ++k)
+                {
+                    sum += (lhs.GetValueAt(i,k) * rhs.GetValueAt(k,j));
+                }
+                result.SetValueAt(sum, i,j);
+            }
+        }
 
         return result;
     }
