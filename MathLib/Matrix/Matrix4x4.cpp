@@ -25,7 +25,7 @@ public:
     //Destructor
     ~Matrix4x4() { DeleteMatrix(); }
 
-    const ushort Size = 3;
+    const ushort Size = 4;
 
     //Static Methods
     static Matrix4x4<T> Identity()
@@ -42,18 +42,18 @@ public:
     T Determinant()
     {
         return
-                m_matrix[0,3] * m_matrix[1,2] * m_matrix[2,1] * m_matrix[3,0] - m_matrix[0,2] * m_matrix[1,3] * m_matrix[2,1] * m_matrix[3,0] -
-                m_matrix[0,3] * m_matrix[1,1] * m_matrix[2,2] * m_matrix[3,0] + m_matrix[0,1] * m_matrix[1,3] * m_matrix[2,2] * m_matrix[3,0] +
-                m_matrix[0,2] * m_matrix[1,1] * m_matrix[2,3] * m_matrix[3,0] - m_matrix[0,1] * m_matrix[1,2] * m_matrix[2,3] * m_matrix[3,0] -
-                m_matrix[0,3] * m_matrix[1,2] * m_matrix[2,0] * m_matrix[3,1] + m_matrix[0,2] * m_matrix[1,3] * m_matrix[2,0] * m_matrix[3,1] +
-                m_matrix[0,3] * m_matrix[1,0] * m_matrix[2,2] * m_matrix[3,1] - m_matrix[0,0] * m_matrix[1,3] * m_matrix[2,2] * m_matrix[3,1] -
-                m_matrix[0,2] * m_matrix[1,0] * m_matrix[2,3] * m_matrix[3,1] + m_matrix[0,0] * m_matrix[1,2] * m_matrix[2,3] * m_matrix[3,1] +
-                m_matrix[0,3] * m_matrix[1,1] * m_matrix[2,0] * m_matrix[3,2] - m_matrix[0,1] * m_matrix[1,3] * m_matrix[2,0] * m_matrix[3,2] -
-                m_matrix[0,3] * m_matrix[1,0] * m_matrix[2,1] * m_matrix[3,2] + m_matrix[0,0] * m_matrix[1,3] * m_matrix[2,1] * m_matrix[3,2] +
-                m_matrix[0,1] * m_matrix[1,0] * m_matrix[2,3] * m_matrix[3,2] - m_matrix[0,0] * m_matrix[1,1] * m_matrix[2,3] * m_matrix[3,2] -
-                m_matrix[0,2] * m_matrix[1,1] * m_matrix[2,0] * m_matrix[3,3] + m_matrix[0,1] * m_matrix[1,2] * m_matrix[2,0] * m_matrix[3,3] +
-                m_matrix[0,2] * m_matrix[1,0] * m_matrix[2,1] * m_matrix[3,3] - m_matrix[0,0] * m_matrix[1,2] * m_matrix[2,1] * m_matrix[3,3] -
-                m_matrix[0,1] * m_matrix[1,0] * m_matrix[2,2] * m_matrix[3,3] + m_matrix[0,0] * m_matrix[1,1] * m_matrix[2,2] * m_matrix[3,3];
+                m_matrix[0][3] * m_matrix[1][2] * m_matrix[2][1] * m_matrix[3][0] - m_matrix[0][2] * m_matrix[1][3] * m_matrix[2][1] * m_matrix[3][0] -
+                m_matrix[0][3] * m_matrix[1][1] * m_matrix[2][2] * m_matrix[3][0] + m_matrix[0][1] * m_matrix[1][3] * m_matrix[2][2] * m_matrix[3][0] +
+                m_matrix[0][2] * m_matrix[1][1] * m_matrix[2][3] * m_matrix[3][0] - m_matrix[0][1] * m_matrix[1][2] * m_matrix[2][3] * m_matrix[3][0] -
+                m_matrix[0][3] * m_matrix[1][2] * m_matrix[2][0] * m_matrix[3][1] + m_matrix[0][2] * m_matrix[1][3] * m_matrix[2][0] * m_matrix[3][1] +
+                m_matrix[0][3] * m_matrix[1][0] * m_matrix[2][2] * m_matrix[3][1] - m_matrix[0][0] * m_matrix[1][3] * m_matrix[2][2] * m_matrix[3][1] -
+                m_matrix[0][2] * m_matrix[1][0] * m_matrix[2][3] * m_matrix[3][1] + m_matrix[0][0] * m_matrix[1][2] * m_matrix[2][3] * m_matrix[3][1] +
+                m_matrix[0][3] * m_matrix[1][1] * m_matrix[2][0] * m_matrix[3][2] - m_matrix[0][1] * m_matrix[1][3] * m_matrix[2][0] * m_matrix[3][2] -
+                m_matrix[0][3] * m_matrix[1][0] * m_matrix[2][1] * m_matrix[3][2] + m_matrix[0][0] * m_matrix[1][3] * m_matrix[2][1] * m_matrix[3][2] +
+                m_matrix[0][1] * m_matrix[1][0] * m_matrix[2][3] * m_matrix[3][2] - m_matrix[0][0] * m_matrix[1][1] * m_matrix[2][3] * m_matrix[3][2] -
+                m_matrix[0][2] * m_matrix[1][1] * m_matrix[2][0] * m_matrix[3][3] + m_matrix[0][1] * m_matrix[1][2] * m_matrix[2][0] * m_matrix[3][3] +
+                m_matrix[0][2] * m_matrix[1][0] * m_matrix[2][1] * m_matrix[3][3] - m_matrix[0][0] * m_matrix[1][2] * m_matrix[2][1] * m_matrix[3][3] -
+                m_matrix[0][1] * m_matrix[1][0] * m_matrix[2][2] * m_matrix[3][3] + m_matrix[0][0] * m_matrix[1][1] * m_matrix[2][2] * m_matrix[3][3];
     }
 
     Matrix4x4<T> Inverse()
@@ -64,27 +64,27 @@ public:
         if(determinant == 0)
         {
             //can't do inverse
-            return nullptr;
+            return inverse;
         }
 
         T inverse_determinant = 1/determinant;
 
         inverse.SetValueAt(m_matrix[0][0] * inverse_determinant, 0,0);
         inverse.SetValueAt(m_matrix[0][1] * inverse_determinant, 0,1);
-        inverse.SetValueAt(m_matrix[0][1] * inverse_determinant, 0,2);
-        inverse.SetValueAt(m_matrix[0][1] * inverse_determinant, 0,3);
+        inverse.SetValueAt(m_matrix[0][2] * inverse_determinant, 0,2);
+        inverse.SetValueAt(m_matrix[0][3] * inverse_determinant, 0,3);
         inverse.SetValueAt(m_matrix[1][0] * inverse_determinant, 1,0);
         inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 1,1);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 1,2);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 1,3);
-        inverse.SetValueAt(m_matrix[1][0] * inverse_determinant, 2,0);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 2,1);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 2,2);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 2,3);
-        inverse.SetValueAt(m_matrix[1][0] * inverse_determinant, 3,0);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 3,1);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 3,2);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 3,3);
+        inverse.SetValueAt(m_matrix[1][2] * inverse_determinant, 1,2);
+        inverse.SetValueAt(m_matrix[1][3] * inverse_determinant, 1,3);
+        inverse.SetValueAt(m_matrix[2][0] * inverse_determinant, 2,0);
+        inverse.SetValueAt(m_matrix[2][1] * inverse_determinant, 2,1);
+        inverse.SetValueAt(m_matrix[2][2] * inverse_determinant, 2,2);
+        inverse.SetValueAt(m_matrix[2][3] * inverse_determinant, 2,3);
+        inverse.SetValueAt(m_matrix[3][0] * inverse_determinant, 3,0);
+        inverse.SetValueAt(m_matrix[3][1] * inverse_determinant, 3,1);
+        inverse.SetValueAt(m_matrix[3][2] * inverse_determinant, 3,2);
+        inverse.SetValueAt(m_matrix[3][3] * inverse_determinant, 3,3);
 
         return inverse;
     }
