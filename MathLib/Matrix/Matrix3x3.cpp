@@ -56,20 +56,20 @@ public:
         if(determinant == 0)
         {
             //can't do inverse
-            return nullptr;
+            return inverse;
         }
 
         T inverse_determinant = 1/determinant;
 
         inverse.SetValueAt(m_matrix[0][0] * inverse_determinant, 0,0);
         inverse.SetValueAt(m_matrix[0][1] * inverse_determinant, 0,1);
-        inverse.SetValueAt(m_matrix[0][1] * inverse_determinant, 0,2);
+        inverse.SetValueAt(m_matrix[0][2] * inverse_determinant, 0,2);
         inverse.SetValueAt(m_matrix[1][0] * inverse_determinant, 1,0);
         inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 1,1);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 1,2);
-        inverse.SetValueAt(m_matrix[1][0] * inverse_determinant, 2,0);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 2,1);
-        inverse.SetValueAt(m_matrix[1][1] * inverse_determinant, 2,2);
+        inverse.SetValueAt(m_matrix[1][2] * inverse_determinant, 1,2);
+        inverse.SetValueAt(m_matrix[2][0] * inverse_determinant, 2,0);
+        inverse.SetValueAt(m_matrix[2][1] * inverse_determinant, 2,1);
+        inverse.SetValueAt(m_matrix[2][2] * inverse_determinant, 2,2);
 
         return inverse;
     }
