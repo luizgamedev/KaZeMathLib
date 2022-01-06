@@ -9,8 +9,27 @@ using namespace KMath;
 
 TEST_CASE("2x2 Matrix Creation and Access", "[Matrix2x2]")
 {
-    Matrix2x2<float> myMatrix;
+    float constant = 3.1415936;
+    Matrix2x2<float> matrix_a;
 
+    float a00 = rand() % 100 * constant;
+    float a01 = rand() % 100 * constant;
+    float a10 = rand() % 100 * constant;
+    float a11 = rand() % 100 * constant;
+
+    SECTION("Setting Values and Checking them")
+    {
+        matrix_a.SetValueAt(a00, 0,0);
+        matrix_a.SetValueAt(a01, 0,1);
+        matrix_a.SetValueAt(a10, 1,0);
+        matrix_a.SetValueAt(a11, 1,1);
+
+        //Consistency checks
+        REQUIRE (matrix_a.GetValueAt(0,0) == a00);
+        REQUIRE (matrix_a.GetValueAt(0,1) == a01);
+        REQUIRE (matrix_a.GetValueAt(1,0) == a10);
+        REQUIRE (matrix_a.GetValueAt(1,1) == a11);
+    }
 
 }
 
@@ -83,9 +102,6 @@ TEST_CASE("2x2 Matrix Add and Subtraction", "[Matrix2x2]")
         REQUIRE (matrix_b.GetValueAt(1,0) == b10);
         REQUIRE (matrix_b.GetValueAt(1,1) == b11);
     }
-
-
-
 
 }
 
@@ -228,14 +244,20 @@ TEST_CASE("2x2 Matrix Inverse", "[Matrix2x2]")
 
     SECTION("2x2 Inverting a Matrix")
     {
+        float determinant = matrix_a.Determinant();
         //Using Cramer's rule
         matrix_inverse = matrix_a.Inverse();
-        float inverse_det = 1 / matrix_a.Determinant();
 
-        REQUIRE (matrix_inverse.GetValueAt(0,0) == a00 * inverse_det);
-        REQUIRE (matrix_inverse.GetValueAt(0,1) == a01 * inverse_det);
-        REQUIRE (matrix_inverse.GetValueAt(1,0) == a10 * inverse_det);
-        REQUIRE (matrix_inverse.GetValueAt(1,1) == a11 * inverse_det);
+        if(determinant != 0)
+        {
+
+            float inverse_det = 1 / matrix_a.Determinant();
+
+            REQUIRE (matrix_inverse.GetValueAt(0, 0) == a00 * inverse_det);
+            REQUIRE (matrix_inverse.GetValueAt(0, 1) == a01 * inverse_det);
+            REQUIRE (matrix_inverse.GetValueAt(1, 0) == a10 * inverse_det);
+            REQUIRE (matrix_inverse.GetValueAt(1, 1) == a11 * inverse_det);
+        }
 
         //Consistency checks
         REQUIRE (matrix_a.GetValueAt(0,0) == a00);

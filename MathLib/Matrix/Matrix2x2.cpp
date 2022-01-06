@@ -46,7 +46,15 @@ public:
     Matrix2x2<T> Inverse()
     {
         Matrix2x2<T> inverse;
-        T inverse_determinant = 1/Determinant();
+        T determinant = Determinant();
+
+        if(determinant == 0)
+        {
+            //can't do inverse
+            return inverse;
+        }
+
+        T inverse_determinant = 1/determinant;
 
         inverse.SetValueAt(m_matrix[0][0] * inverse_determinant, 0,0);
         inverse.SetValueAt(m_matrix[0][1] * inverse_determinant, 0,1);
@@ -140,11 +148,27 @@ public:
     //Comparison Operators
     inline bool operator==(const Matrix2x2<T>& other) const
     {
-        return false;
+        for(int i = 0 ; i < Size ; ++i)
+        {
+            for(int j = 0 ; j < Size ; j++)
+            {
+                if(m_matrix[i][j] != other.GetValueAt(i,j))
+                    return false;
+            }
+        }
+        return true;
     }
 
     inline bool operator!=(const Matrix2x2<T>& other) const
     {
+        for(int i = 0 ; i < Size ; ++i)
+        {
+            for(int j = 0 ; j < Size ; j++)
+            {
+                if(m_matrix[i][j] != other.GetValueAt(i,j))
+                    return true;
+            }
+        }
         return false;
     }
 
