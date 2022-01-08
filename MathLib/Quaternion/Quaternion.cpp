@@ -79,10 +79,21 @@ class Quaternion
             {
                 T inverseNorm = 1 / norm;
                 result.scalar = inverseNorm * scalar;
-                result.vec = inverseNorm * Vec3<T>;
+                result.vec = inverseNorm * vec;
             }
 
             return result;
+
+        }
+
+        Quaternion<T> UnitNormQuaternion()
+        {
+            T angleRad = scalar*M_PI / ((T) 180);
+            Vec3<T> normalVec = vec.Normalise();
+            float scalar = cos(angleRad * ((T)0.5));
+            Vec3<T> vec = normalVec * sin( angleRad * ((T)0.5) );
+
+            return Quaternion<T>(scalar, vec);
 
         }
 
@@ -91,10 +102,31 @@ class Quaternion
             return Quaternion<T>(scalar, vec * (-1));
         }
 
-//        Quaternion<T> Inverse()
-//        {
-//            return
-//        }
+        Quaternion<T> Inverse()
+        {
+            Quaternion<T> result;
+            T norm = Norm();
+            if(norm != 0)
+            {
+                Quaternion<T> conjugate = Conjugate();
+                result = conjugate * (1/(norm*norm));
+            }
+
+            return result;
+        }
+
+        Vec3<T> RotateVector(T _angle, Vec3<T>& _axis)
+        {
+            Quaternion<T> p(0,vec);
+            Vec3<T> normalised = _axis.Normalize();
+            Quaternion<T> q(_angle,normalised);
+            q = q.UnitNormQuaternion();
+            Quaternion<T> qInverse = q.Inverse();
+            Quaternion<T> rotatedQuaternion = q*p*qInverse;
+
+            return rotatedQuaternion.v;
+
+        }
 
 
         //Comparison Operators
